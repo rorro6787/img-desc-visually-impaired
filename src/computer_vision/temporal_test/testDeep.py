@@ -61,12 +61,11 @@ npy_filename = "depth_array.npy"
 np.save(npy_filename, output)
 print(f"Los datos de profundidad se han guardado como {npy_filename}")
 """
-
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Cargar el archivo .npy
-npy_filename = "/home/rorro3382/Desktop/Universidad/4Carrera/ImageTracking/src/depth_array.npy"
+npy_filename = "name.npy"
 depth_array = np.load(npy_filename)
 print("siiii"+str(depth_array[600][600]))
 # Verificar las dimensiones del array cargado
