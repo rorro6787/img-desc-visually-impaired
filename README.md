@@ -1,9 +1,23 @@
-# Automated Image Description for Visually Impaired People
+# Automated Image Description for Visually Impaired People (YOLO + MiDaS + LangChain)
 
 <div align="center">
   <p>
     <a href="https://github.com/ultralytics/assets/releases/tag/v8.2.0" target="_blank">
       <img width="100%" src="https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png" alt="YOLO Vision banner"></a>
+  </p>
+</div>
+
+<div align="center">
+  <p>
+    <a href="https://yaksoy.github.io/images/hrdepthTeaser.jpg" target="_blank">
+      <img width="100%" src="https://yaksoy.github.io/images/hrdepthTeaser.jpg" alt="LangChain banner"></a>
+  </p>
+</div>
+
+<div align="center">
+  <p>
+    <a href="https://media.licdn.com/dms/image/D4E12AQHnLknj0EYfBA/article-cover_image-shrink_600_2000/0/1684267676484?e=2147483647&v=beta&t=PrMj5CmpRsqMecZwmySc3LSnQ9jkZNoer75YWJFzJBM" target="_blank">
+      <img width="100%" src="https://media.licdn.com/dms/image/D4E12AQHnLknj0EYfBA/article-cover_image-shrink_600_2000/0/1684267676484?e=2147483647&v=beta&t=PrMj5CmpRsqMecZwmySc3LSnQ9jkZNoer75YWJFzJBM" alt="LangChain banner"></a>
   </p>
 </div>
 
