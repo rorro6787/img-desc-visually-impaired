@@ -38,10 +38,11 @@ The objective of this project is to create a system that provides comprehensive 
 
 ## Features
 
-- Object detection using YOLO (You Only Look Once) for identifying objects in images.
-- Natural language generation using large language models (LLMs) to create descriptive text based on detected objects.
-- Real-time processing of images for generating immediate descriptions.
-- Evaluation scripts to assess the quality and accuracy of generated descriptions.
+- **Object Detection**: Utilizes YOLO (You Only Look Once) for identifying objects in images.
+- **Natural Language Generation**: Employs large language models (LLMs) to create descriptive text based on detected objects.
+- **Real-Time Processing**: Generates immediate descriptions through real-time image processing.
+- **Evaluation Scripts**: Includes tools for assessing the quality and accuracy of generated descriptions.
+- **Development Phases**: View our Trello board using this link [Link to our Trello Board](https://trello.com/invite/b/66cc95674da7ab502f627c06/ATTI256c41b0fb855982e0329a22659c13527927C238/image-description-visually-impaired-people) to explore the various phases and steps taken in building the system 
 - PDF documentation explaining the implementation and code: [Download the PDF document](https://github.com/rorro6787/ImageTracking/blob/gamma/Image_Tracking_YOLO.pdf)
 
 ## Requirements
