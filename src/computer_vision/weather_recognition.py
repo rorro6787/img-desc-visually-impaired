@@ -106,6 +106,8 @@ def preprocessing():
         plt.axis('off')
     plt.show()
 
+    print(f"list: {list(train_gen.class_indices.keys())}")
+
     return train_gen, valid_gen, test_gen
 
 def createAndtrainModel(train_gen, valid_gen, test_gen):
