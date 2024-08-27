@@ -25,6 +25,8 @@ def preprocess_image(img_path, img_size):
 def predict_image(model, img_array, class_names):
     # Make predictions
     predictions = model.predict(img_array)
+
+    print(f"predictions: {predictions}")
     
     # Get the predicted class index
     predicted_class_index = np.argmax(predictions, axis=1)[0]
@@ -35,6 +37,7 @@ def predict_image(model, img_array, class_names):
     return predicted_class_name, predictions
 
 def inference_image(filename:str):
+
     if not os.path.exists(f"{cd}/trainedModel.h5"):
         print(f"{cd}/trainedModel.h5 does not exist. Downloading...")
         # Download the model file from Google Drive
