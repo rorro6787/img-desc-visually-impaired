@@ -16,7 +16,7 @@ cd = os.getcwd()
 def extract_entities_image(sourcePath:str):
     original_path = os.path.dirname(sourcePath)
     results = model(sourcePath, save = True, project=original_path)
-    
+
     dimensions = "Image dimensions: (width=" + str(cv2.imread(sourcePath).shape[1]) + ") x (height="+ str(cv2.imread(sourcePath).shape[0]) + ")\n"
     information = []
     heat_map_path = hm.heat_map(sourcePath)
@@ -48,7 +48,3 @@ def extract_entities_image(sourcePath:str):
         shutil.rmtree(carpeta)
         
     return dimensions, max_deepth, min_deepth, weather, information
-
-if __name__ == "__main__":
-    # hm.show_heat_map("/home/rorro3382/Desktop/Universidad/4Carrera/img-desc-visually-impaired/src/computer_vision/tests/test1/depth_array.npy")
-    print(extract_entities_image("/home/rorro3382/Desktop/Universidad/4Carrera/img-desc-visually-impaired/src/computer_vision/tests/test1/download.jpeg"))
