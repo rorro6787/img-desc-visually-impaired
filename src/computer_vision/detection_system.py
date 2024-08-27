@@ -11,7 +11,7 @@ import heat_map as hm
 import inference_weather as wm
 
 def extract_entities_image(sourcePath:str):
-    
+
     model = YOLO("yolov8x.pt", task="detect")
     cd = os.getcwd() 
 
