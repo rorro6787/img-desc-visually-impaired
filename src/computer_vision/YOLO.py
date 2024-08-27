@@ -8,6 +8,7 @@ from zipfile import ZipFile
 import gdown
 import time
 import heat_map as hm
+# import inference_weather as wm
 
 model = YOLO("yolov8x.pt", task="detect")
 cd = os.getcwd()          
