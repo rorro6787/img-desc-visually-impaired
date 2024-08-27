@@ -51,7 +51,7 @@ def inference_image(filename:str):
     img_size = (224, 224)
 
     # Define the path to the image you want to classify
-    img_path = sys.argv[1]
+    img_path = filename
 
     # Load and preprocess the image
     img_array = preprocess_image(img_path, img_size)
@@ -69,4 +69,4 @@ def inference_image(filename:str):
     print(f'Predicted Class: {predicted_class_name}')
     print(f'Class Probabilities: {predictions}')
     
-    return information
+    return predicted_class_name

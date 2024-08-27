@@ -16,11 +16,13 @@ cd = os.getcwd()
 def extract_entities_image(sourcePath:str):
     original_path = os.path.dirname(sourcePath)
     results = model(sourcePath, save = True, project=original_path)
-    information = "Image of dimensions: " + str(cv2.imread(sourcePath).shape[1]) + "x"+ str(cv2.imread(sourcePath).shape[0]) + "\n"
+    dimensions = "Image dimensions: (width=" + str(cv2.imread(sourcePath).shape[1]) + ") x (height="+ str(cv2.imread(sourcePath).shape[0]) + ")\n"
+    information = []
     heat_map_path = hm.heat_map(sourcePath)
     heat_map_array = hm.load_npy(heat_map_path)
-
-
+    max_deepth = "Max deepth: " + str(heat_map_array.max()) + "\n"
+    min_deepth = "Min deepth: " + str(heat_map_array.min()) + "\n"
+    weather = wm.inference_image(sourcePath)
 
     for result in results:
         boxes = result.boxes  # This contains the bounding boxes for detected objects
@@ -38,13 +40,14 @@ def extract_entities_image(sourcePath:str):
             center_y = int((y1 + y2) / 2)
 
             # Print or store the results
-            information += f"{class_name} at coordinates: [{x1}, {y1}, {x2}, {y2}] with heat deepth of {heat_map_array[center_x][center_y]} in the centre of the image\n"
+            information.append(f"{class_name} at coordinates: [{x1}, {y1}, {x2}, {y2}] with heat deepth of {heat_map_array[center_x][center_y]} in the centre of the image\n")
     
     carpeta = os.path.join(cd, '__pycache__')
     if os.path.isdir(carpeta):
         shutil.rmtree(carpeta)
         
-    return information
+    return dimensions, max_deepth, min_deepth, weather, information
 
 if __name__ == "__main__":
+    # hm.show_heat_map("/home/rorro3382/Desktop/Universidad/4Carrera/img-desc-visually-impaired/src/computer_vision/tests/test1/depth_array.npy")
     print(extract_entities_image("/home/rorro3382/Desktop/Universidad/4Carrera/img-desc-visually-impaired/src/computer_vision/tests/test1/download.jpeg"))
