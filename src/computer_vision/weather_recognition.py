@@ -20,6 +20,9 @@ from sklearn.metrics import confusion_matrix, classification_report
 import tensorflow as tf
 from tensorflow import keras
 from keras import Sequential
+# from keras.api.optimizers import Adam, Adamax
+# from keras.api.preprocessing.image import ImageDataGenerator
+# from keras.api.layers import Conv2D, MaxPooling2D, Flatten, Dense, Activation, Dropout, BatchNormalization
 from keras.optimizers import Adam, Adamax
 from keras.preprocessing.image import ImageDataGenerator
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Activation, Dropout, BatchNormalization

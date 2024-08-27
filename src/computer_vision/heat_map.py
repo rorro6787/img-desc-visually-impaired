@@ -72,47 +72,16 @@ def show_heat_map(npy_filename: str):
     # npy_filename = "name.npy"
     depth_array = np.load(npy_filename)
     # Verificar las dimensiones del array cargado
-    print("Dimensiones del array:", depth_array.shape)
+    print("Array Dimensions:", depth_array.shape)
 
     # Mostrar la imagen usando matplotlib
     plt.imshow(depth_array, cmap='plasma')
     plt.colorbar()
-    plt.title('Mapa de Calor de Profundidad')
+    plt.title('Deepness Heat Map')
     plt.show()
 
 def load_npy(npy_filename: str):
     # Download the .npy file
     depth_array = np.load(npy_filename)
     return depth_array
-
-def main():
-    if len(sys.argv) == 3 and 'i' in sys.argv:
-        if sys.argv[-1].startswith("--source="):
-            # Remove "--source=" prefix
-            sourcePath = sys.argv[-1][9:]
-            return heat_map(sourcePath)
-        else:
-            # Handle invalid argument format
-            print(f"Invalid argument format: {sys.argv[-1]}  :( Expected format: --source=sourcePath...")
-    elif len(sys.argv) == 3 and 'ii' in sys.argv:
-        if sys.argv[-1].startswith("--source="):
-            # Remove "--source=" prefix
-            sourcePath = sys.argv[-1][9:]
-            return load_npy(sourcePath)
-        else:
-            # Handle invalid argument format
-            print(f"Invalid argument format: {sys.argv[-1]}  :( Expected format: --source=sourcePath...")
-    elif len(sys.argv) == 3 and 'iii' in sys.argv:
-        if sys.argv[-1].startswith("--source="):
-            # Remove "--source=" prefix
-            sourcePath = sys.argv[-1][9:]
-            return show_heat_map(sourcePath)
-        else:
-            # Handle invalid argument format
-            print(f"Invalid argument format: {sys.argv[-1]}  :( Expected format: --source=sourcePath...")
-    else:
-        print(f"Invalid argument format: {sys.argv[-1]}  :( Expected format: --source=sourcePath...")
-
-if __name__ == '__main__':
-    main()
     
