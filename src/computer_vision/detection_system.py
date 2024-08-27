@@ -7,8 +7,8 @@ import random
 from zipfile import ZipFile
 import gdown
 import time
-import heat_map as hm
-import inference_weather as wm
+import computer_vision.heat_map as hm
+import computer_vision.inference_weather as wm
 
 def extract_entities_image(sourcePath:str):
 
@@ -42,7 +42,7 @@ def extract_entities_image(sourcePath:str):
             center_y = int((y1 + y2) / 2)
 
             # Print or store the results
-            information.append(f"{class_name} at coordinates: [{x1}, {y1}, {x2}, {y2}] with heat deepth of {heat_map_array[center_x][center_y]} in the centre of the image\n")
+            information.append(f"{class_name} at coordinates: [{x1}, {y1}, {x2}, {y2}] with heat deepth of {heat_map_array[center_y][center_x]} in the centre of the image\n")
     
     carpeta = os.path.join(cd, '__pycache__')
     if os.path.isdir(carpeta):

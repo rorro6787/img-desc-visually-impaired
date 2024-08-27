@@ -2,9 +2,8 @@ import os
 import sys
 from computer_vision.detection_system import extract_entities_image
 from langchain.prompts import PromptTemplate
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 from langchain.chains import LLMChain
-
 
 def load_api_keys(filepath):
     api_keys = {}
@@ -15,7 +14,7 @@ def load_api_keys(filepath):
     return api_keys
 
 # Load API keys from the file
-api_keys = load_api_keys('apikeys.txt')
+api_keys = load_api_keys(os.path.join(os.getcwd(), 'NLP', 'apikeys.txt'))
 os.environ["OPENAI_API_KEY"] = api_keys.get('openai', '')
 
 dimensions, maxD, minD, weather, info = extract_entities_image(sys.argv[1])
@@ -27,6 +26,7 @@ for element in info:
 
 
 llm = OpenAI(model="gpt-3.5-turbo-instruct", temperature=0.9)
+
 prompt = PromptTemplate(
     template = """I have detected the objects and features of an image.
                 Describe it in great detail for a visually impaired person.
@@ -36,8 +36,9 @@ prompt = PromptTemplate(
     input_variables=['dimensions', 'minD', 'maxD', 'weather','info']
 )
 
-chain = LLMChain(llm=llm,
-                 prompt=prompt)
+# chain = LLMChain(llm=llm, prompt=prompt)
+
+chain = prompt | llm
 
 input_data = {
     'dimensions': dimensions,
@@ -48,7 +49,7 @@ input_data = {
 }
 
 # Run the chain with the input data
-detailed_description = chain.run(input_data)
+detailed_description = chain.invoke(input_data)
 
 # Print or use the generated detailed description
 print(detailed_description)
