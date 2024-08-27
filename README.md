@@ -32,7 +32,7 @@ This repository contains code and resources for developing a computer vision sys
 - [Dataset](#dataset)
 - [Contributing](#contributing)
 
-## Introduction
+## Introduction (tested on Python 3.10.12)
 
 The objective of this project is to create a system that provides comprehensive and accessible descriptions of images for people with visual impairments. By combining advanced object detection with natural language processing, the system can describe the contents of an image in detail, including identifying objects, their relationships, and contextual information.
 
