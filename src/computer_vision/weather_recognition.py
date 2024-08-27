@@ -10,7 +10,6 @@ import seaborn as sns
 sns.set_style('darkgrid')
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report
 
 # import Deep learning Libraries
 import tensorflow as tf
@@ -155,6 +154,8 @@ def createAndtrainModel(train_gen, valid_gen, test_gen):
                 validation_data=valid_gen, 
                 validation_steps=None,
                 shuffle=False)
+    
+    model.save("trainedModel.h5")  # Save the model
 
     return model
 
