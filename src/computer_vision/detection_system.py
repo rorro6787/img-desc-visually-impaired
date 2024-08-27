@@ -16,7 +16,7 @@ cd = os.getcwd()
 def extract_entities_image(sourcePath:str):
     original_path = os.path.dirname(sourcePath)
     results = model(sourcePath, save = True, project=original_path)
-
+    
     dimensions = "Image dimensions: (width=" + str(cv2.imread(sourcePath).shape[1]) + ") x (height="+ str(cv2.imread(sourcePath).shape[0]) + ")\n"
     information = []
     heat_map_path = hm.heat_map(sourcePath)
