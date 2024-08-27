@@ -25,6 +25,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Activation, Dropout, BatchNormalization
 from keras import regularizers
 import zipfile
+import gdown
 
 # Ignore Warnings
 import warnings
@@ -37,7 +38,10 @@ print ('modules loaded')
 def preprocessing():
     # Generate data paths with labels
 
-    zip_path = "archive.zip"  # Path to the zip file
+    zip_path = "archive.zip"
+
+    # Download the file from Google Drive
+    gdown.download(f"https://drive.google.com/uc?id=1rbWLaN20yoZ_JZKyMbbhDboTwss12Poo", zip_path, quiet=False)
 
     # Check if the dataset directory already exists to avoid re-extracting
     if not os.path.exists("dataset"):
@@ -105,15 +109,6 @@ def preprocessing():
         plt.title(class_name, color= 'blue', fontsize= 12)
         plt.axis('off')
     plt.show()
-
-    # Display the plot
-    plt.show(block=False)
-
-    # Wait for 5 seconds
-    time.sleep(5)
-
-    # Close the plot
-    plt.close()
 
     return train_gen, valid_gen, test_gen
 
