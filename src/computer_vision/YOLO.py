@@ -9,7 +9,7 @@ import gdown
 import time
 import heat_map as hm
 
-model = YOLO("yolov8l.pt", task="detect")
+model = YOLO("yolov8x.pt", task="detect")
 cd = os.getcwd()          
 
 def extract_entities_image(sourcePath:str):

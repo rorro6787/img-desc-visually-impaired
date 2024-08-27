@@ -1,3 +1,4 @@
 venv/
 src/computer_vision/archive.zip
 src/computer_vision/Multi-class Weather Dataset
+src/computer_vision/yolov8x.pt
