@@ -9,3 +9,4 @@ timm==1.0.9
 scikit-learn
 tensorflow==2.14.1
 keras==2.14.0
+langchain
