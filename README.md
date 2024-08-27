@@ -47,7 +47,7 @@ The objective of this project is to create a system that provides comprehensive 
 
 ## Requirements
 
-- Python 3.x
+- Python 3.10.x
 - Ultralytics YOLOv8+
 - PyTorch
 - Transformers (for LLMs)
@@ -70,7 +70,8 @@ The objective of this project is to create a system that provides comprehensive 
 3. (Optional) Create a virtual environment:
 
     ```sh
-    python -m venv venv
+    sudo apt-get install python3.10-venv
+    python3.10 -m venv venv
     .\venv\Scripts\activate  # On macOS/Linux use 'source venv/bin/activate'
     ```
 
