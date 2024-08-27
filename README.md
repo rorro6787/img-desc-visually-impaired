@@ -2,8 +2,8 @@
 
 <div align="center">
   <p>
-    <a href="https://github.com/ultralytics/assets/releases/tag/v8.2.0" target="_blank">
-      <img width="100%" src="https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png" alt="YOLO Vision banner"></a>
+    <a href="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/22606/images/f8d6362-3e5e-c73-a7a4-e54525b5431a_banner-yolov8.png" target="_blank">
+      <img width="100%" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/22606/images/f8d6362-3e5e-c73-a7a4-e54525b5431a_banner-yolov8.png" alt="YOLO Vision banner"></a>
   </p>
 </div>
 
