@@ -1,13 +1,9 @@
 # import system libs
 import os
-import time
-import shutil
-import pathlib
-import itertools
+import sys
 from PIL import Image
 
 # import data handling tools
-import cv2
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -20,13 +16,11 @@ from sklearn.metrics import confusion_matrix, classification_report
 import tensorflow as tf
 from tensorflow import keras
 from keras import Sequential
-# from keras.api.optimizers import Adam, Adamax
-# from keras.api.preprocessing.image import ImageDataGenerator
-# from keras.api.layers import Conv2D, MaxPooling2D, Flatten, Dense, Activation, Dropout, BatchNormalization
-from keras.optimizers import Adam, Adamax
+from keras.optimizers import Adamax
 from keras.preprocessing.image import ImageDataGenerator
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Activation, Dropout, BatchNormalization
+from keras.layers import Dense, Dropout, BatchNormalization
 from keras import regularizers
+from keras.preprocessing import image
 import zipfile
 import gdown
 
@@ -153,17 +147,63 @@ def createAndtrainModel(train_gen, valid_gen, test_gen):
         except RuntimeError as e:
             print(e)
 
-    epochs = 25
+    epochs = 25             # number of epochs to be trained
 
-    history = model.fit(x=train_gen,
-                        epochs=epochs,
-                        verbose=1,
-                        validation_data=valid_gen, 
-                        validation_steps=None,
-                        shuffle=False)
+    model.fit(x=train_gen,
+                epochs=epochs,
+                verbose=1,
+                validation_data=valid_gen, 
+                validation_steps=None,
+                shuffle=False)
 
     return model
+
+
+def preprocess_image(img_path, img_size):
+    # Load the image
+    img = image.load_img(img_path, target_size=img_size)
+    
+    # Convert the image to a numpy array
+    img_array = image.img_to_array(img)
+    
+    # Expand dimensions to match the model input shape (batch size dimension)
+    img_array = np.expand_dims(img_array, axis=0)
+    
+    # Normalize the image array (if required by your preprocessing)
+    img_array /= 255.0  # Assuming images were scaled during training
+
+    return img_array
+
+def predict_image(model, img_array, class_names):
+    # Make predictions
+    predictions = model.predict(img_array)
+    
+    # Get the predicted class index
+    predicted_class_index = np.argmax(predictions, axis=1)[0]
+    
+    # Get the predicted class name
+    predicted_class_name = class_names[predicted_class_index]
+    
+    return predicted_class_name, predictions
 
 tr_g, va_g, te_g = preprocessing()
 
 model = createAndtrainModel(tr_g,va_g,te_g)
+
+# Define the image size (must match the size used during model training)
+img_size = (224, 224)
+
+# Define the path to the image you want to classify
+img_path = sys.argv[1]
+
+# Load and preprocess the image
+img_array = preprocess_image(img_path, img_size)
+
+class_names = list(tr_g.class_indices.keys())
+
+# Make a prediction
+predicted_class_name, predictions = predict_image(model, img_array, class_names)
+
+# Print the results
+print(f'Predicted Class: {predicted_class_name}')
+print(f'Class Probabilities: {predictions}')

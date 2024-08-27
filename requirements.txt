@@ -7,5 +7,5 @@ gdown==5.2.0
 emoji==2.12.1
 timm==1.0.9
 scikit-learn
-tensorflow
+tensorflow[and-cuda]
 keras
