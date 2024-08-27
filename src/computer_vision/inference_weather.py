@@ -34,29 +34,36 @@ def predict_image(model, img_array, class_names):
     
     return predicted_class_name, predictions
 
-if not os.path.exists(f"{cd}/trainedModel.h5"):
-    print(f"{cd}/trainedModel.h5 does not exist. Downloading...")
-    # Download the model file from Google Drive
-    gdown.download("https://drive.google.com/uc?id=1vl7FGRt3Uq70cD2Ue787Pq5YbQUMsIY3", "trainedModel.h5", quiet=False)
-else:
-    print(f"{cd}/trainedModel.h5 already exists. Skipping download.")
+def inference_image(filename:str):
+    if not os.path.exists(f"{cd}/trainedModel.h5"):
+        print(f"{cd}/trainedModel.h5 does not exist. Downloading...")
+        # Download the model file from Google Drive
+        gdown.download("https://drive.google.com/uc?id=1vl7FGRt3Uq70cD2Ue787Pq5YbQUMsIY3", "trainedModel.h5", quiet=False)
+    else:
+        print(f"{cd}/trainedModel.h5 already exists. Skipping download.")
 
-new_model = load_model(f"{cd}/trainedModel.h5")
+    new_model = load_model(f"{cd}/trainedModel.h5")
 
-# Define the image size (must match the size used during model training)
-img_size = (224, 224)
+    # Define the image size (must match the size used during model training)
+    img_size = (224, 224)
 
-# Define the path to the image you want to classify
-img_path = sys.argv[1]
+    # Define the path to the image you want to classify
+    img_path = sys.argv[1]
 
-# Load and preprocess the image
-img_array = preprocess_image(img_path, img_size)
+    # Load and preprocess the image
+    img_array = preprocess_image(img_path, img_size)
 
-class_names = ['Cloudy', 'Rain', 'Shine', 'Sunrise']
+    class_names = ['Cloudy', 'Rain', 'Shine', 'Sunrise']
 
-# Make a prediction
-predicted_class_name, predictions = predict_image(new_model, img_array, class_names)
+    # Make a prediction
+    predicted_class_name, predictions = predict_image(new_model, img_array, class_names)
 
-# Print the results
-print(f'Predicted Class: {predicted_class_name}')
-print(f'Class Probabilities: {predictions}')
+    # Print the results
+    information = ""
+    information += f'Predicted Class: {predicted_class_name}\n'
+    information += f'Class Probabilities: {predictions}\n'
+
+    print(f'Predicted Class: {predicted_class_name}')
+    print(f'Class Probabilities: {predictions}')
+    
+    return information
