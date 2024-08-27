@@ -25,18 +25,21 @@ for element in info:
     formatted_info += '\n'
 
 
-llm = OpenAI(model="gpt-3.5-turbo-instruct", temperature=0.9)
+llm = OpenAI(model="gpt-3.5-turbo-instruct",
+             temperature=0.9,
+             max_tokens=3000)
 
 prompt = PromptTemplate(
     template = """I have detected the objects and features of an image.
-                Describe it in great detail for a visually impaired person.
+                Describe with 1000 tokens it in great detail for a visually impaired person.
                 The dimensions of the image are {dimensions}, the minimum and maximum depths of 
                 the image computed by MiDaS are {minD} and {maxD}. The weather on the image is {weather}
-                and the here is the list of detected objects and their depths: {info}""",
+                and the here is the list of detected objects and their depths: {info}. Just focus on
+                describing the image, not the sizes of the boxes or the deepth values, and do not invent 
+                information about anything, describe just the information on the list of detected 
+                objets""",
     input_variables=['dimensions', 'minD', 'maxD', 'weather','info']
 )
-
-# chain = LLMChain(llm=llm, prompt=prompt)
 
 chain = prompt | llm
 
