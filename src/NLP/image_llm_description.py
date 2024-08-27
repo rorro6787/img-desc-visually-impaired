@@ -1,9 +1,12 @@
-from computer_vision.detection_system import extract_entities_image
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import computer_vision as cv
 from langchain.prompts import PromptTemplate
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain
-import os
-import sys
+
 
 def load_api_keys(filepath):
     api_keys = {}
@@ -17,7 +20,7 @@ def load_api_keys(filepath):
 api_keys = load_api_keys('apikeys.txt')
 os.environ["OPENAI_API_KEY"] = api_keys.get('openai', '')
 
-dimensions, maxD, minD, weather, info = extract_entities_image(sys.argv[1])
+dimensions, maxD, minD, weather, info = cv.detection_system.extract_entities_image(sys.argv[1])
 
 formatted_info = ""
 for element in info:
