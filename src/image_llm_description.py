@@ -28,7 +28,7 @@ for element in info:
 
 llm = OpenAI(model="gpt-3.5-turbo-instruct",
              temperature=0.9,
-             max_tokens=3000)
+             max_tokens=2500)
 
 prompt = PromptTemplate(
     template = """I have an image analysis where objects are detected and identified using a YOLO model, and depth information 
