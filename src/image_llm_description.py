@@ -14,7 +14,7 @@ def load_api_keys(filepath):
     return api_keys
 
 # Load API keys from the file
-api_keys = load_api_keys(os.path.join(os.getcwd(), 'NLP', 'apikeys.txt'))
+api_keys = load_api_keys('apikeys.txt')
 os.environ["OPENAI_API_KEY"] = api_keys.get('openai', '')
 
 dimensions, maxD, minD, weather, info = extract_entities_image(sys.argv[1])
