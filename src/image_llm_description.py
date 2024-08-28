@@ -33,7 +33,7 @@ llm = OpenAI(model="gpt-3.5-turbo-instruct",
 prompt = PromptTemplate(
     template = """I have an image analysis where objects are detected and identified using a YOLO model, and depth information 
                 is extracted using a MiDaS model. The data is structured as follows: each detected object is identified 
-                by its type (e.g., 'car') and is associated with a bounding box defined by coordinates (x1, y1, x2, y2). 
+                by its type (e.g., 'car') and its color and is associated with a bounding box defined by coordinates (x1, y1, x2, y2). 
                 Additionally, each object has a heatmap value representing the distance from the camera, with higher values indicating closer 
                 proximity. Here is the array of detected objects with their corresponding bounding box coordinates and heatmap values: {info}
                 You get as well to have some extra information about the image, such as the dimensions of the image {dimensions}, 
@@ -80,5 +80,5 @@ voice_index = 19                # Index for English (Great Britain) (male)
 engine.setProperty('voice', voices[voice_index].id)
 
 # Speak the text
-#engine.say(detailed_description)
-# engine.runAndWait()
+engine.say(detailed_description)
+engine.runAndWait()

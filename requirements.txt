@@ -14,3 +14,4 @@ langchain-community
 openai
 langchain-openai
 pyttsx3
+webcolors
