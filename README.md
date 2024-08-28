@@ -30,10 +30,10 @@ This repository contains code and resources for developing a computer vision sys
 - [Installation](#installation)
 - [Usage](#usage)
 - [Dataset](#dataset)
+- [Docker Deployment](#docker-deployment) 
 - [Contributing](#contributing)
 
-## Introduction (tested on Python 3.10.12)
-
+## Introduction
 The objective of this project is to create a system that provides comprehensive and accessible descriptions of images for people with visual impairments. By combining advanced object detection with natural language processing, the system can describe the contents of an image in detail, including identifying objects, their relationships, and contextual information.
 
 ## Features
@@ -43,7 +43,7 @@ The objective of this project is to create a system that provides comprehensive 
 - **Real-Time Processing**: Generates immediate descriptions through real-time image processing.
 - **Evaluation Scripts**: Includes tools for assessing the quality and accuracy of generated descriptions.
 - **Development Phases**: View our Trello board using this link [Link to our Trello Board](https://trello.com/invite/b/66cc95674da7ab502f627c06/ATTI256c41b0fb855982e0329a22659c13527927C238/image-description-visually-impaired-people) to explore the various phases and steps taken in building the system
-- **Documentation**: Detailed PDF explaining the implementation and code in the following link [Download the PDF document](https://github.com/rorro6787/ImageTracking/blob/gamma/Image_Tracking_YOLO.pdf)
+- **Documentation**: Detailed PDF explaining the implementation and code in the following link [Download the PDF document](https://github.com/rorro6787/img-desc-visually-impaired/blob/main/Project_Documentation.pdf)
 
 ## Requirements
 
@@ -105,7 +105,7 @@ To use the system for generating image descriptions, follow these instructions:
    - To generate descriptions for an image, use the following script:
 
      ```sh
-     python generate_description.py --source=image_path
+     python image_llm_description.py image_path
      ```
 
    This script processes the image at `image_path`, detects objects, and uses an LLM to generate a descriptive text of the image. 
@@ -117,6 +117,14 @@ To use the system for generating image descriptions, follow these instructions:
 ## Dataset
 
 The dataset should consist of diverse images that are representative of real-world scenes. You can use publicly available datasets or annotate your own dataset to train and evaluate the system. For best results, include a variety of objects and contexts.
+
+## Docker Deployment
+If you have Docker installed in your system and you do not want to install all the dependencies and the python version required to test this app, you can use Docker to run the app in a little virtual machine. The project has been included with a Dockerfile that process all the requirements and creates a docker image of a virtual machine that satisfies all the requiremenmts needed and has the project running perfecylt. Just run the followinf commands:
+```ssh
+sudo docker build -t prueba .
+sudo docker run -it prueba
+```
+  
 
 ## Contributors
 
