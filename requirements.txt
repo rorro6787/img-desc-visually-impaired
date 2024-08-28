@@ -13,3 +13,4 @@ langchain
 langchain-community
 openai
 langchain-openai
+pyttsx3

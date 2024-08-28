@@ -4,6 +4,7 @@ from computer_vision.detection_system import extract_entities_image
 from langchain.prompts import PromptTemplate
 from langchain_openai import OpenAI
 from langchain.chains import LLMChain
+import pyttsx3
 
 def load_api_keys(filepath):
     api_keys = {}
@@ -56,3 +57,19 @@ detailed_description = chain.invoke(input_data)
 
 # Print or use the generated detailed description
 print(detailed_description)
+
+# Initialize the TTS engine
+engine = pyttsx3.init()
+
+# List all available voices
+voices = engine.getProperty('voices')
+
+# Select the voice by index
+voice_index = 19                # Index for English (Great Britain) (male)
+
+# Set the selected voice
+engine.setProperty('voice', voices[voice_index].id)
+
+# Speak the text
+engine.say(detailed_description)
+engine.runAndWait()
