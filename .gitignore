@@ -3,8 +3,7 @@ src/computer_vision/archive.zip
 src/computer_vision/Multi-class Weather Dataset
 src/computer_vision/yolov8x.pt
 src/computer_vision/trainedModel.h5
-src/NLP/apikeys.txt
-src/NLP/__pycache__/
+src/apikeys.txt
 src/computer_vision/__pycache__/
 src/computer_vision/tests/test2/predict*
 src/yolov8x.pt
