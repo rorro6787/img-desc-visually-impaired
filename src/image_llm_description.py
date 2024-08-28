@@ -27,7 +27,7 @@ for element in info:
 
 
 llm = OpenAI(model="gpt-3.5-turbo-instruct",
-             temperature=0.9,
+             temperature=0.3,
              max_tokens=2500)
 
 prompt = PromptTemplate(
@@ -38,12 +38,15 @@ prompt = PromptTemplate(
                 proximity. Here is the array of detected objects with their corresponding bounding box coordinates and heatmap values: {info}
                 You get as well to have some extra information about the image, such as the dimensions of the image {dimensions}, 
                 the minimum and maximum depths of the image computed by MiDaS {minD} and {maxD}, and the weather on the image {weather}.
-                Please analyze this information to determine:
+                Please analyze this information to determine in a nice description without talking about the coordendates or other
+                types of numbers, the following:
 
                 The weather conditions in the image.
                 The total number of objects in the image.
                 The type of each object.
-                The relative positioning of the objects based on their heatmap values to identify which objects are in front of others.  
+                The relative positioning of the objects (left, right) based on their heatmap values to identify which objects are in front of others.
+                Name them as people, animal, or whatever they are, not as objects and defenitely do not use any tecnical words like boxes and number meassures 
+                in your description.
             """,
     input_variables=['dimensions', 'minD', 'maxD', 'weather','info']
 )
@@ -77,5 +80,5 @@ voice_index = 19                # Index for English (Great Britain) (male)
 engine.setProperty('voice', voices[voice_index].id)
 
 # Speak the text
-engine.say(detailed_description)
-engine.runAndWait()
+#engine.say(detailed_description)
+# engine.runAndWait()
