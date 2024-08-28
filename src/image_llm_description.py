@@ -31,14 +31,20 @@ llm = OpenAI(model="gpt-3.5-turbo-instruct",
              max_tokens=3000)
 
 prompt = PromptTemplate(
-    template = """I have detected the objects and features of an image.
-                Describe with 1000 tokens it in great detail for a visually impaired person.
-                The dimensions of the image are {dimensions}, the minimum and maximum depths of 
-                the image computed by MiDaS are {minD} and {maxD}. The weather on the image is {weather}
-                and the here is the list of detected objects and their depths: {info}. Just focus on
-                describing the image, not the sizes of the boxes or the deepth values, and do not invent 
-                information about anything, describe just the information on the list of detected 
-                objets""",
+    template = """I have an image analysis where objects are detected and identified using a YOLO model, and depth information 
+                is extracted using a MiDaS model. The data is structured as follows: each detected object is identified 
+                by its type (e.g., 'car') and is associated with a bounding box defined by coordinates (x1, y1, x2, y2). 
+                Additionally, each object has a heatmap value representing the distance from the camera, with higher values indicating closer 
+                proximity. Here is the array of detected objects with their corresponding bounding box coordinates and heatmap values: {info}
+                You get as well to have some extra information about the image, such as the dimensions of the image {dimensions}, 
+                the minimum and maximum depths of the image computed by MiDaS {minD} and {maxD}, and the weather on the image {weather}.
+                Please analyze this information to determine:
+
+                The weather conditions in the image.
+                The total number of objects in the image.
+                The type of each object.
+                The relative positioning of the objects based on their heatmap values to identify which objects are in front of others.  
+            """,
     input_variables=['dimensions', 'minD', 'maxD', 'weather','info']
 )
 
