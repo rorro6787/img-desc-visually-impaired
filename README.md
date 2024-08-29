@@ -100,19 +100,17 @@ To use the system for generating image descriptions, follow these instructions:
 
 1. **Prepare the dataset**: Ensure your images are ready for processing.
 
-2. **Run object detection and description generation**:
+2. **Run the Application**:
 
-   - To generate descriptions for an image, use the following script:
+   - To use the application, first run the app.py script that hosts the service in your localhost:
 
      ```sh
-     python image_llm_description.py image_path
+     python app.py
      ```
-
-   This script processes the image at `image_path`, detects objects, and uses an LLM to generate a descriptive text of the image. 
 
 3. **View and save results**:
 
-   - The script will output the generated description to the console and save the processed image with annotations if required.
+   By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues.
 
 ## Dataset
 
