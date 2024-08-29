@@ -29,7 +29,6 @@ This repository contains code and resources for developing a computer vision sys
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Dataset](#dataset)
 - [Docker Deployment](#docker-deployment) 
 - [Contributing](#contributing)
 
@@ -100,6 +99,13 @@ The objective of this project is to create a system that provides comprehensive 
     pip freeze > requirements.txt
     ```
 
+## Docker Deployment
+If you have Docker installed on your system and prefer not to install all the dependencies and the specific Python version required to test this app, you can use Docker to run the app in a lightweight virtual environment. The project includes a Dockerfile that processes all the necessary requirements and creates a Docker image of a virtual machine that fulfills all the dependencies and runs the project perfectly. Simply run the following commands:
+```ssh
+docker build -t mi_proyecto:latest .
+docker run -it -p 5000:5000 mi_proyecto
+```
+
 ## Usage
 
 To use the system for generating image descriptions, follow these instructions:
@@ -110,10 +116,15 @@ To use the system for generating image descriptions, follow these instructions:
      openai: <your-api-key>
      ```
 
-3. **Run the Application**: To use the application, first run the app.py script that hosts the service in your localhost:
+3. **Run the Application (1)**: To use the application, first run the app.py script that hosts the service in your localhost (in case you want to use the virtual environment):
 
      ```sh
      python app.py
+     ```
+
+4. **Run the Application (2)**: To use the application using docker, first you need to have build the image, then:
+     ```sh
+     docker run -it -p 5000:5000 mi_proyecto
      ```
 
 4. **View and save results**: By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues. When you use the app and upload any image you will see a result similar to this:
@@ -123,17 +134,6 @@ To use the system for generating image descriptions, follow these instructions:
         <img width="100%" src="https://github.com/rorro6787/rorro6787/blob/main/resss.png" alt="Red Abstracta"></a>
     </p>
   </div>
-
-## Dataset
-
-The dataset should consist of diverse images that are representative of real-world scenes. You can use publicly available datasets or annotate your own dataset to train and evaluate the system. For best results, include a variety of objects and contexts.
-
-## Docker Deployment
-If you have Docker installed on your system and prefer not to install all the dependencies and the specific Python version required to test this app, you can use Docker to run the app in a lightweight virtual environment. The project includes a Dockerfile that processes all the necessary requirements and creates a Docker image of a virtual machine that fulfills all the dependencies and runs the project perfectly. Simply run the following commands:
-```ssh
-docker build -t mi_proyecto:latest .
-docker run -it -p 5000:5000 mi_proyecto
-```
   
 
 ## Contributors
