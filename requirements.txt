@@ -16,3 +16,5 @@ langchain-openai==0.1.22
 pyttsx3==2.91
 webcolors==24.8.0
 Flask==3.0.3
+gTTS
+playsound

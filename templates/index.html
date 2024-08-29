@@ -56,7 +56,10 @@
         <div class="description-container text-center">
             <h2 class="mb-3 text-white description-heading">Description</h2>
             <p class="lead description-text" id="description">{{ description }}</p>
-            <button id="speakButton" class="btn btn-orange text-light spaced-button">Read Description Aloud</button>
+            <!-- New form for additional processing -->
+            <form id="extraProcessingForm" action="/process_extra" method="POST" class="btn btn-orange text-light spaced-button">
+                <button class="btn btn-primary" type="submit">Read Description Aloud</button>
+            </form>
         </div>
         
         {% endif %}
@@ -78,27 +81,6 @@
                 document.getElementById('loadingSpinner').style.display = 'none';
                 // Show success message
                 document.getElementById('successMessage').style.display = 'block';
-            }
-        });
-
-        document.getElementById('speakButton').addEventListener('click', function() {
-            const descriptionText = document.getElementById('description').innerText;
-
-            // Check if SpeechSynthesis API is supported
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(descriptionText);
-                
-                // Set the voice to a female English voice if available
-                const voices = window.speechSynthesis.getVoices();
-                const femaleVoice = voices.find(voice => voice.name.toLowerCase().includes('female') || voice.name.toLowerCase().includes('english'));
-                
-                if (femaleVoice) {
-                    utterance.voice = femaleVoice;
-                }
-
-                speechSynthesis.speak(utterance);
-            } else {
-                alert('Sorry, your browser does not support the SpeechSynthesis API.');
             }
         });
     </script>

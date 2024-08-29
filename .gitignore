@@ -7,3 +7,4 @@ apikeys.txt
 src/computer_vision/__pycache__/
 src/computer_vision/tests/test2/predict*
 trainedModel.h5
+Outputs/
