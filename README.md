@@ -110,7 +110,13 @@ To use the system for generating image descriptions, follow these instructions:
      python app.py
      ```
 
-4. **View and save results**: By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues.
+4. **View and save results**: By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues. When you use the app and upload any image you will see a result similar to this:
+  <div align="center">
+    <p>
+      <a href="https://github.com/rorro6787/rorro6787/blob/main/resss.png" target="_blank">
+        <img width="100%" src="https://github.com/rorro6787/rorro6787/blob/main/resss.png" alt="Red Abstracta"></a>
+    </p>
+  </div>
 
 ## Dataset
 
