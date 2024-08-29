@@ -129,7 +129,7 @@ To use the system for generating image descriptions, follow these instructions:
 The dataset should consist of diverse images that are representative of real-world scenes. You can use publicly available datasets or annotate your own dataset to train and evaluate the system. For best results, include a variety of objects and contexts.
 
 ## Docker Deployment
-If you have Docker installed in your system and you do not want to install all the dependencies and the python version required to test this app, you can use Docker to run the app in a little virtual machine. The project has been included with a Dockerfile that process all the requirements and creates a docker image of a virtual machine that satisfies all the requiremenmts needed and has the project running perfecylt. Just run the followinf commands:
+If you have Docker installed on your system and prefer not to install all the dependencies and the specific Python version required to test this app, you can use Docker to run the app in a lightweight virtual environment. The project includes a Dockerfile that processes all the necessary requirements and creates a Docker image of a virtual machine that fulfills all the dependencies and runs the project perfectly. Simply run the following commands:
 ```ssh
 docker build -t mi_proyecto:latest .
 docker run -it -p 5000:5000 mi_proyecto
