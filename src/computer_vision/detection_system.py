@@ -10,6 +10,7 @@ from. import heat_map as hm
 from. import inference_weather as wm
 import glob
 
+"""
 def closest_colour(requested_colour):
     min_colours = {}
     for name in webcolors.names("css3"):
@@ -54,7 +55,7 @@ def combine_similar_colors(cluster_centers, labels, counts, threshold=70):
 
     return np.array(combined_colors), np.array(combined_counts)
 
-def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=15, threshold=70):
+def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=3, threshold=70):
     from PIL import Image
     from collections import Counter
     
@@ -71,17 +72,101 @@ def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=15, thresho
         cluster_centers = kmeans.cluster_centers_
         unique_labels, counts = np.unique(pixel_labels, return_counts=True)
 
-        # print("labels and counts:\n")
-        # for i in range(0,len(unique_labels)):
-        #     d = unique_labels[i]
-        #     print(kmeans.cluster_centers_[d].astype(int),' - ',counts[i])
-
         # Combine similar colors
         combined_colors, combined_counts = combine_similar_colors(cluster_centers, pixel_labels, counts, threshold)
         
         # Find the dominant color
         dominant_color_index = np.argmax(combined_counts)
         dominant_color = combined_colors[dominant_color_index].astype(int)
+
+        # Return the dominant color as a tuple (R, G, B)
+        return get_colour_name(tuple(dominant_color))[1]"""
+
+def closest_colour(requested_colour):
+    min_colours = {}
+    for name in webcolors.names("css3"):
+        r_c, g_c, b_c = webcolors.name_to_rgb(name)
+        rd = (r_c - requested_colour[0]) ** 2
+        gd = (g_c - requested_colour[1]) ** 2
+        bd = (b_c - requested_colour[2]) ** 2
+        min_colours[(rd + gd + bd)] = name
+    return min_colours[min(min_colours.keys())]
+
+def get_colour_name(requested_colour):
+    try:
+        #print(f"requested color: {requested_colour}")
+        closest_name = actual_name = webcolors.rgb_to_name(requested_colour)
+    except ValueError:
+        closest_name = closest_colour(requested_colour)
+        actual_name = None
+    return actual_name, closest_name
+
+def map_to_nearest_color(pixel, color_map):
+    # Find the nearest color in the color_map
+    pixel = np.array(pixel)
+    distances = np.linalg.norm(color_map - pixel, axis=1)
+    return color_map[np.argmin(distances)]
+
+def combine_similar_colors(cluster_centers, pixel_labels, counts, threshold):
+    # Combine colors that are close to each other into one representative color
+    color_map = np.array(cluster_centers)
+    new_colors = []
+    new_counts = []
+    
+    for i, count in enumerate(counts):
+        color = cluster_centers[i]
+        assigned = False
+        for j, new_color in enumerate(new_colors):
+            if np.linalg.norm(new_color - color) < threshold:
+                new_counts[j] += count
+                assigned = True
+                break
+        if not assigned:
+            new_colors.append(color)
+            new_counts.append(count)
+    
+    return np.array(new_colors), np.array(new_counts)
+
+def assign_to_dominant_color(region, color_map):
+    # Map all pixels to the nearest color in the color_map
+    reshaped_region = region.reshape(-1, 3)
+    mapped_region = np.array([map_to_nearest_color(pixel, color_map) for pixel in reshaped_region])
+    return mapped_region.reshape(region.shape)
+
+def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=3, threshold=70):
+    with Image.open(image_path) as img:
+        img = img.convert("RGB")
+        img_array = np.array(img)
+        region = img_array[int(y1):int(y2), int(x1):int(x2)]
+        pixels = region.reshape(-1, 3)
+        
+        kmeans = KMeans(n_clusters=n_clusters)
+        kmeans.fit(pixels)
+
+        pixel_labels = kmeans.labels_
+        cluster_centers = kmeans.cluster_centers_
+        unique_labels, counts = np.unique(pixel_labels, return_counts=True)
+
+        # Combine similar colors
+        combined_colors, combined_counts = combine_similar_colors(cluster_centers, pixel_labels, counts, threshold)
+        
+        # Assign similar colors to the dominant colors
+        mapped_region = assign_to_dominant_color(region, combined_colors)
+        mapped_pixels = mapped_region.reshape(-1, 3)
+        
+        kmeans_final = KMeans(n_clusters=n_clusters)
+        kmeans_final.fit(mapped_pixels)
+
+        final_pixel_labels = kmeans_final.labels_
+        final_cluster_centers = kmeans_final.cluster_centers_
+        final_unique_labels, final_counts = np.unique(final_pixel_labels, return_counts=True)
+
+        # Combine similar colors again if needed
+        final_combined_colors, final_combined_counts = combine_similar_colors(final_cluster_centers, final_pixel_labels, final_counts, threshold)
+        
+        # Find the dominant color
+        dominant_color_index = np.argmax(final_combined_counts)
+        dominant_color = final_combined_colors[dominant_color_index].astype(int)
 
         # Return the dominant color as a tuple (R, G, B)
         return get_colour_name(tuple(dominant_color))[1]
