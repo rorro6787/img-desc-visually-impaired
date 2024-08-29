@@ -1,0 +1,83 @@
+/* Color Palette */
+body {
+    background-color: #0d1117; /* Dark background with a hint of navy */
+    color: #c9d1d9; /* Light gray text */
+    font-family: 'Arial', sans-serif;
+}
+
+.text-blue {
+    color: #58a6ff; /* Rich Blue */
+}
+
+.text-white {
+    color: #f0f6fc; /* Soft White */
+}
+
+.text-orange {
+    color: #f78166; /* Vibrant Orange */
+}
+
+.btn-orange {
+    background-color: #f78166; /* Vibrant Orange */
+    border: none;
+    color: #0d1117;
+}
+
+.btn-orange:hover {
+    background-color: #ff9b6b;
+}
+
+.bg-input-dark {
+    background-color: #161b22; /* Darker background for input fields */
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+}
+
+.bg-input-dark::file-selector-button {
+    background-color: #30363d;
+    color: #c9d1d9;
+}
+
+.image-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 500px;
+    max-height: 500px;
+    border: 3px solid #58a6ff; /* Blue border */
+    border-radius: 10px;
+}
+
+.image-container p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #f78166; /* Vibrant Orange */
+}
+
+.description-container {
+    margin-top: 40px;
+}
+
+.description-heading {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1e90ff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.description-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #f0e68c;
+    background-color: #2e2e2e;
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+    text-align: justify;
+    margin-top: 20px;
+}
+ 

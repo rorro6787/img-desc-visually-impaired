@@ -6,8 +6,9 @@ from PIL import Image
 import numpy as np
 from sklearn.cluster import KMeans
 import webcolors
-import computer_vision.heat_map as hm
-import computer_vision.inference_weather as wm
+from. import heat_map as hm
+from. import inference_weather as wm
+import glob
 
 def closest_colour(requested_colour):
     min_colours = {}
@@ -53,7 +54,7 @@ def combine_similar_colors(cluster_centers, labels, counts, threshold=70):
 
     return np.array(combined_colors), np.array(combined_counts)
 
-def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=3, threshold=70):
+def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=15, threshold=70):
     from PIL import Image
     from collections import Counter
     
@@ -70,10 +71,10 @@ def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=3, threshol
         cluster_centers = kmeans.cluster_centers_
         unique_labels, counts = np.unique(pixel_labels, return_counts=True)
 
-        print("labels and counts:\n")
-        for i in range(0,len(unique_labels)):
-            d = unique_labels[i]
-            print(kmeans.cluster_centers_[d].astype(int),' - ',counts[i])
+        # print("labels and counts:\n")
+        # for i in range(0,len(unique_labels)):
+        #     d = unique_labels[i]
+        #     print(kmeans.cluster_centers_[d].astype(int),' - ',counts[i])
 
         # Combine similar colors
         combined_colors, combined_counts = combine_similar_colors(cluster_centers, pixel_labels, counts, threshold)
@@ -94,7 +95,18 @@ def extract_entities_image(sourcePath:str):
 
     original_path = os.path.dirname(sourcePath)
     results = model(sourcePath, save = True, project=original_path)
+
+    #--------------------------------------
+    # Get the path of the saved results from the results object'
+    # Find all directories matching the pattern
+    directories = glob.glob(os.path.join(original_path, 'predict*'))
     
+    # Return the most recent directory and add original. filename eg. processed/predict1/image.png
+    if directories:
+        saved_path =  max(directories, key=os.path.getmtime)
+        saved_path = os.path.join(saved_path, os.path.basename(sourcePath))
+    #----------------------------------------
+
     dimensions = "Image dimensions: (width=" + str(cv2.imread(sourcePath).shape[1]) + ") x (height="+ str(cv2.imread(sourcePath).shape[0]) + ")\n"
     information = []
     heat_map_path = hm.heat_map(sourcePath)
@@ -128,4 +140,4 @@ def extract_entities_image(sourcePath:str):
     if os.path.isdir(carpeta):
         shutil.rmtree(carpeta)
         
-    return dimensions, max_deepth, min_deepth, weather, information
+    return dimensions, max_deepth, min_deepth, weather, information, saved_path     # Also return the path for the saved object detection image

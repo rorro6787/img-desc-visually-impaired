@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Description for Visually Impaired</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-4 mb-4 text-blue">Image Description for Visually Impaired</h1>
+        </div>
+
+        <form id="uploadForm" action="/" method="POST" enctype="multipart/form-data" class="text-center mb-5">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control bg-input-dark text-light" name="file" id="inputFile" required>
+                <button class="btn btn-orange" type="submit">Upload Image</button>
+            </div>
+        </form>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="text-center" style="display: none;">
+            <div class="spinner-border text-orange" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2 text-light">Processing, please wait...</p>
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="alert alert-success text-center" role="alert" style="display: none;">
+            Processing complete!
+        </div>
+
+        {% if original_image %}
+        <div class="image-panel d-flex justify-content-center mb-5">
+            <div class="image-container mx-2">
+                <img src="{{ url_for('display_image', filename=original_image) }}" alt="Original Image" class="img-fluid rounded">
+                <p class="text-center mt-2 text-orange">Original Image</p>
+            </div>
+            <div class="image-container mx-2">
+                <img src="{{ url_for('display_image', filename=depth_image) }}" alt="Depth Image" class="img-fluid rounded">
+                <p class="text-center mt-2 text-orange">Depth Image</p>
+            </div>
+            <div class="image-container mx-2">
+                <img src="{{ url_for('display_image', filename=objects_image) }}" alt="Objects Image" class="img-fluid rounded">
+                <p class="text-center mt-2 text-orange">Objects & Bounding Boxes</p>
+            </div>
+        </div>
+
+        <div class="description-container text-center">
+            <h2 class="mb-3 text-white description-heading">Description</h2>
+            <p class="lead description-text">{{ description }}</p>
+        </div>
+        
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function() {
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+            // Hide success message initially
+            document.getElementById('successMessage').style.display = 'none';
+        });
+
+        window.addEventListener('load', function() {
+            if (document.getElementById('original_image')) {
+                // Hide loading spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
