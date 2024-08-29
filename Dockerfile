@@ -1,20 +1,20 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10-slim
+# Usar una imagen base de Python
+FROM python:3.9-slim
 
-# Set the working directory to /app
+# Establecer el directorio de trabajo en la imagen de Docker
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copiar el archivo de requisitos a la imagen de Docker
 COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
+# Instalar las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the current directory contents into the container at /app
+# Copiar el código fuente del proyecto a la imagen de Docker, incluyendo la carpeta adicional
 COPY . .
 
-# Make port 8000 available to the world outside this container
-EXPOSE 8000
+# Exponer el puerto que usará la aplicación
+EXPOSE 5000
 
-# Run app.py when the container launches
-ENTRYPOINT ["/bin/bash"]
+# Comando por defecto para ejecutar la aplicación
+CMD ["python", "app.py"]

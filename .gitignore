@@ -1,4 +1,5 @@
 venv/
+src/__pycache__/
 src/computer_vision/archive.zip
 src/computer_vision/Multi-class Weather Dataset
 yolov8x.pt
