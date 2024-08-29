@@ -131,8 +131,8 @@ The dataset should consist of diverse images that are representative of real-wor
 ## Docker Deployment
 If you have Docker installed in your system and you do not want to install all the dependencies and the python version required to test this app, you can use Docker to run the app in a little virtual machine. The project has been included with a Dockerfile that process all the requirements and creates a docker image of a virtual machine that satisfies all the requiremenmts needed and has the project running perfecylt. Just run the followinf commands:
 ```ssh
-sudo docker build -t prueba .
-sudo docker run -it prueba
+docker build -t mi_proyecto:latest .
+docker run -it -p 5000:5000 mi_proyecto
 ```
   
 
