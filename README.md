@@ -98,19 +98,19 @@ The objective of this project is to create a system that provides comprehensive 
 
 To use the system for generating image descriptions, follow these instructions:
 
-1. **Prepare the dataset**: Ensure your images are ready for processing.
+1. **Configure the apikeys.txt**: Outside the src folder, you need to create an apikeys.txt file where you will insert your OpenAI API key. This step is mandatory; if not done, the application will not work. Your apikeys.txt has to look like this:
 
-2. **Run the Application**:
+     ```sh
+     openai: <your-api-key>
+     ```
 
-   - To use the application, first run the app.py script that hosts the service in your localhost:
+3. **Run the Application**: To use the application, first run the app.py script that hosts the service in your localhost:
 
      ```sh
      python app.py
      ```
 
-3. **View and save results**:
-
-   By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues.
+4. **View and save results**: By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues.
 
 ## Dataset
 
