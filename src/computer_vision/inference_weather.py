@@ -26,8 +26,6 @@ def predict_image(model, img_array, class_names):
     # Make predictions
     predictions = model.predict(img_array)
 
-    print(f"predictions: {predictions}")
-    
     # Get the predicted class index
     predicted_class_index = np.argmax(predictions, axis=1)[0]
     
@@ -66,7 +64,4 @@ def inference_image(filename:str):
     information += f'Predicted Class: {predicted_class_name}\n'
     information += f'Class Probabilities: {predictions}\n'
 
-    print(f'Predicted Class: {predicted_class_name}')
-    print(f'Class Probabilities: {predictions}')
-    
     return predicted_class_name

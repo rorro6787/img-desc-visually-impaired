@@ -83,8 +83,6 @@ def compute_mean_color_region(image_path, x1, y1, x2, y2, n_clusters=15, thresho
         dominant_color_index = np.argmax(combined_counts)
         dominant_color = combined_colors[dominant_color_index].astype(int)
 
-        print(f"Dominant color is: {dominant_color}")
-
         # Return the dominant color as a tuple (R, G, B)
         return get_colour_name(tuple(dominant_color))[1]
 
@@ -134,8 +132,6 @@ def extract_entities_image(sourcePath:str):
                 # Print or store the results
                 information.append(f"{color} {class_name} at coordinates: [{x1}, {y1}, {x2}, {y2}] with heat deepth of {heat_map_array[center_y][center_x]} in the centre of the image\n")
     
-    print(f"ALL INFORMATION TAKEN IS: {information}")
-
     carpeta = os.path.join(cd, '__pycache__')
     if os.path.isdir(carpeta):
         shutil.rmtree(carpeta)

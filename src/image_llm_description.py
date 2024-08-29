@@ -1,13 +1,13 @@
 import os
-import sys
+import time
 from .computer_vision.detection_system import extract_entities_image
 from langchain.prompts import PromptTemplate
 from langchain_openai import OpenAI
-from langchain.chains import LLMChain
-import pyttsx3
 
 def process_image(img_path):
-        
+
+    startTime = time.time()
+
     def load_api_keys(filepath):
         api_keys = {}
         with open(filepath, 'r') as file:
@@ -69,23 +69,9 @@ def process_image(img_path):
     # Print or use the generated detailed description
     print(detailed_description)
 
-    # Initialize the TTS engine
-    engine = pyttsx3.init()
+    totalTime = time.time() - startTime
 
-    # List all available voices
-    voices = engine.getProperty('voices')
-
-    # Select the voice by index
-    voice_index = 19                # Index for English (Great Britain) (male)
-
-    # Set the selected voice
-    engine.setProperty('voice', voices[voice_index].id)
-
-    # Speak the text
-    engine.say(detailed_description)
-    engine.runAndWait()
-
-    return 'processed/depth_image.png', objects_image_path, detailed_description
+    return 'processed/depth_image.png', objects_image_path, detailed_description, round(totalTime)
 
 if __name__ =='__main':
     pass

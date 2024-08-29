@@ -21,13 +21,14 @@ def index():
             file.save(file_path)
             
             # Process the image and get results
-            depth_image_path, objects_image_path, description = process_image(file_path)
+            depth_image_path, objects_image_path, description, totalTime = process_image(file_path)
  
             return render_template('index.html',
                                    original_image=file_path,
                                    depth_image=depth_image_path,
                                    objects_image=objects_image_path,
-                                   description=description)
+                                   description=description,
+                                   totalTime = totalTime)
     
     return render_template('index.html')
 

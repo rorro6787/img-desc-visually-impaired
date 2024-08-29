@@ -69,6 +69,12 @@ body {
     letter-spacing: 1.5px;
 }
 
+.time-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e90ff;
+}
+
 .description-text {
     font-size: 1.2rem;
     font-weight: 400;
@@ -80,4 +86,15 @@ body {
     text-align: justify;
     margin-top: 20px;
 }
- 
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.spaced-button {
+    margin-bottom: 30px; /* Adjust the space below the button */
+}
