@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
+# Create a symlink for /usr/bin/python3 if it's not there (maybe a solution????)
+RUN ln -s $(which python3) /usr/bin/python3
+
 # Establecer el directorio de trabajo en la imagen de Docker
 WORKDIR /app
 
