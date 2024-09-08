@@ -63,8 +63,12 @@ def process_image(img_path):
         'info': formatted_info
     }
 
-    # Run the chain with the input data
-    detailed_description = chain.invoke(input_data)
+    try:
+        # Run the chain with the input data
+        detailed_description = chain.invoke(input_data)
+    except Exception as e:
+        print(e)
+        detailed_description = "Your openai api key is invalid or has expired. Please update the api key in the apikeys.txt file."
 
     # Print or use the generated detailed description
     print(detailed_description)
