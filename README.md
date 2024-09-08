@@ -127,7 +127,7 @@ To use the system for generating image descriptions, follow these instructions:
      docker run -it -p 5000:5000 mi_proyecto
      ```
 
-4. **View and save results**: By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues. When you use the app and upload any image you will see a result similar to this:
+4. **View and save results**: By default, we specified that the service would be deployed on your localhost at port 5000. Copy this into your browser, and you can then use the application without any issues. When you use the app and upload any image you will see a result similar to this (take into account that when you are running the application in the Docker virtual machine, the sound feuture will not work unless the sound devices in your PC are configured within the container):
   <div align="center">
     <p>
       <a href="https://github.com/rorro6787/rorro6787/blob/main/resss.png" target="_blank">
