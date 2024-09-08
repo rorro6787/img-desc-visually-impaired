@@ -109,8 +109,6 @@ def process_extra():
 
     return render_template('index.html')
 
-
-
 @app.route('/display/<path:filename>')
 def display_image(filename):
     # Use send_file to serve the file from the specified path
@@ -118,4 +116,4 @@ def display_image(filename):
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=True) 

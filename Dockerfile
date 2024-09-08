@@ -5,6 +5,9 @@ FROM python:3.10.14-slim
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    alsa-utils \
+    libasound2 \
+    libasound2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a symlink for /usr/bin/python3 if it's not there (maybe a solution????)
