@@ -131,7 +131,7 @@ To use the system for generating image descriptions, follow these instructions:
   <div align="center">
     <p>
       <a href="https://github.com/rorro6787/rorro6787/blob/main/resss.png" target="_blank">
-        <img width="100%" src="https://github.com/rorro6787/rorro6787/blob/main/resss.png" alt="Red Abstracta"></a>
+        <img width="100%" src="https://github.com/rorro6787/rorro6787/blob/main/Images/resss.png" alt="Red Abstracta"></a>
     </p>
   </div>
   
